@@ -11,6 +11,8 @@ import java.util.concurrent.ScheduledExecutorService;
 @Configuration
 public class AsyncConfiguration {
 
+
+  // Custome Scheduled Executor
   @Bean
   public ScheduledExecutorService taskScheduler(){
     return Executors.newScheduledThreadPool(10);
@@ -23,7 +25,12 @@ public class AsyncConfiguration {
     return Executors.newVirtualThreadPerTaskExecutor();
   }*/
 
-  // belajar Menambah Executor
+  @Bean
+  public Executor taskExecutor(){
+    return Executors.newFixedThreadPool(10);  // Gantikan sesuai kebutuhan
+  }
+
+  // belajar Dyanamic Executor
   @Bean
   public Executor singleTaskExecutor(){
     return Executors.newSingleThreadExecutor();

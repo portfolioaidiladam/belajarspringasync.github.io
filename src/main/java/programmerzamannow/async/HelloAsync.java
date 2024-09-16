@@ -18,9 +18,7 @@ public class HelloAsync {
   @SneakyThrows
   public Future<String> hello(final String name) {
     CompletableFuture<String> future = new CompletableFuture<>();
-    Duration duration = Duration.ofSeconds(2);
-    long seconds = duration.getSeconds();
-    Thread.sleep(seconds);
+    Thread.sleep(Duration.ofSeconds(2).toMillis());
     future.complete("Hello " + name + " from Thread " + Thread.currentThread());
     return future;
   }
@@ -29,8 +27,8 @@ public class HelloAsync {
   @SneakyThrows
   public void hello() {
     Duration duration = Duration.ofSeconds(2);
-    long seconds = duration.getSeconds();
-    Thread.sleep(seconds);
+    //long seconds = duration.getSeconds();
+    Thread.sleep(duration.toMillis());
     log.info("hello after 2 seconds {}", Thread.currentThread());
   }
 
